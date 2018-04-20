@@ -4,7 +4,8 @@ import pandas as pd
 from pymongo import *
 import bson	
 import csv
-
+from sklearn.externals import joblib
+import pickle
 app = Flask(__name__)
 api = Api(app)
 
@@ -19,22 +20,11 @@ db = client.PayPal
 # Random Forest Classifire to find Seller Rating
 def ratingTangible(category,userGivenRating,Delivery,Originality,Willingness):
 	if(category==1):
-		df = pd.read_csv('datasetTangible.csv')
-		from sklearn.ensemble import RandomForestClassifier
-		X = df[['User_given_rating','Delivery_on_time','Originality_of_Product','Willingness']].values
-		y = df['Seller_rating'].values
-		rfc = RandomForestClassifier(n_estimators=100)
-		rfc.fit(X, y)
+		rfc = joblib.load('TangibleModel.pkl')
 		return rfc.predict([[userGivenRating,Delivery,Originality,Willingness]])[0]
 def ratingInangible(category,userGivenRating,genuineness,Willingness):
 	if(category==2):
-		df = pd.read_csv('datasetIntangible.csv')
-		df.head(9)
-		from sklearn.ensemble import RandomForestClassifier
-		X = df[['User_given_rating','Genuineness','Willingness']].values
-		y = df['Seller_rating'].values
-		rfc = RandomForestClassifier(n_estimators=100)
-		rfc.fit(X, y)
+		rfc = joblib.load('IntangibleModel.pkl')
 		return rfc.predict([[userGivenRating,genuineness,Willingness]])[0]
 
 class Seller_NewRating(Resource):

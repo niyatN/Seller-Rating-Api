@@ -80,8 +80,9 @@ class Seller_NewRating(Resource):
 
 			if(category =='tickets'):
 				BuyerScore = userData['category_count']['tickets']
+				BuyerScore = BuyerScore/100
 				total = tr_ticket
-				sellerRating = (r_ticket * total+ Overall)/(total+1)
+				sellerRating = (r_ticket * total+ Overall * BuyerScore)/(total+1)
 				newSellerData = {
 					"category_count":{
 						"clothes":tr_clothes,
@@ -104,13 +105,14 @@ class Seller_NewRating(Resource):
 						"entertainment":r_entertainment
 					}
 				}
-				print('ti')
+			
 
 
 			elif(category =='entertainment'):
 				BuyerScore = userData['category_count']['entertainment']
+				BuyerScore = BuyerScore/100
 				total = tr_entertainment
-				sellerRating = (r_entertainment * total+ Overall)/(total+1)
+				sellerRating = (r_entertainment * total+ Overall * BuyerScore)/(total+ 1)
 				newSellerData = {
 					"category_count":{
 						"clothes":tr_clothes,
@@ -136,8 +138,9 @@ class Seller_NewRating(Resource):
 
 			elif(category =='education'):
 				BuyerScore = userData['category_count']['education']
+				BuyerScore = BuyerScore/100
 				total = tr_education
-				sellerRating = (r_education * total+ Overall)/(total+1)
+				sellerRating = (r_education * total+ Overall * BuyerScore)/(total+ 1)
 				newSellerData = {
 					"category_count":{
 						"clothes":tr_clothes,
@@ -195,8 +198,9 @@ class Seller_NewRating(Resource):
 			print('===================================================================','\n')
 			if(category =='automobiles'):
 				BuyerScore = userData['category_score']['automobiles']
+				BuyerScore = BuyerScore/100
 				total = tr_automobiles
-				sellerRating = (r_automobiles * total+ Overall)/(total+1)
+				sellerRating = (r_automobiles * total+ Overall * BuyerScore)/(total+ 1)
 				newSellerData = {
 					"category_count":{
 						"clothes":tr_clothes,
@@ -222,8 +226,9 @@ class Seller_NewRating(Resource):
 
 			elif(category=='daily_needs'):
 				BuyerScore = userData['category_score']['daily_needs']
+				BuyerScore = BuyerScore/100
 				total = tr_daily_needs
-				sellerRating = (r_daily_needs * total+ Overall)/(total+1)
+				sellerRating = (r_daily_needs * total+ Overall * BuyerScore)/(total+ 1)
 				newSellerData = {
 					"category_count":{
 						"clothes":tr_clothes,
@@ -249,8 +254,9 @@ class Seller_NewRating(Resource):
 
 			elif(category=='electronics'):
 				BuyerScore = userData['category_score']['electronics']
+				BuyerScore = BuyerScore/100
 				total = tr_electronics
-				sellerRating = (r_electronics * total+ Overall)/(total+1)
+				sellerRating = (r_electronics * total+ Overall * BuyerScore)/(total+ 1)
 				newSellerData = {
 					"category_count":{
 						"clothes":tr_clothes,
@@ -277,8 +283,9 @@ class Seller_NewRating(Resource):
 
 			elif(category=='clothes'):
 				BuyerScore = userData['category_score']['clothes']
+				BuyerScore = BuyerScore/100
 				total = tr_clothes
-				sellerRating = (r_clothes * total+ Overall)/(total+1)
+				sellerRating = (r_clothes * total+ Overall * BuyerScore)/(total+ 1)
 				newSellerData = {
 					"category_count":{
 						"clothes":tr_clothes+1,
